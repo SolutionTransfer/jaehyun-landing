@@ -31,7 +31,7 @@
   --cream:#fffaf4; --sand:#f4e6d3; --line:#e4d2bd;
   --cta:#0b7a58; --cta-d:#065a41; --cta-l:#5be0b5;
   --hi:#f4c542; --kakao:#fee500;
-  --r-s:10px; --r-m:14px; --r-l:20px;
+  --r-s:4px; --r-m:6px; --r-l:8px;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:76px}
@@ -63,7 +63,7 @@ img{max-width:100%;display:block}
 .top{position:sticky;top:0;z-index:30;background:#fffaf4f2;color:var(--ink);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
 .nav{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:20px}
 .brand{display:flex;align-items:center;gap:12px;flex-shrink:0}
-.seal{display:grid;grid-template-columns:1fr 1fr;width:40px;height:40px;place-items:center;background:var(--ink);color:var(--hi);padding:3px;border-radius:6px;font-weight:900;font-size:13px;line-height:1}
+.seal{display:grid;grid-template-columns:1fr 1fr;width:40px;height:40px;place-items:center;background:var(--ink);color:var(--hi);padding:3px;border-radius:3px;font-weight:900;font-size:13px;line-height:1}
 .brand-text{font-weight:800;font-size:17px;letter-spacing:-.04em;line-height:1.3}
 .brand-text small{display:block;font-size:13px;font-weight:500;color:var(--muted);letter-spacing:0}
 .links{display:flex;gap:26px;font-size:15px;font-weight:700;margin-left:auto;margin-right:8px;color:var(--ink2)}
@@ -88,37 +88,41 @@ main{background:linear-gradient(180deg,#fff8ef 0%,#fffaf4 12%,#fbf1e4 30%,#fffaf
 .bg-cream{background:var(--cream)}
 .cta-row{margin-top:40px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
 
-/* ---------- 히어로 (포스터) ---------- */
-.hero{color:var(--ink);position:relative}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;min-height:min(720px,calc(100vh - 64px))}
-.hero-copy{padding:64px 48px 64px max(24px,calc((100vw - 1160px)/2 + 24px));display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2}
-.hero-tag{align-self:flex-start;background:#fff;border:1px solid var(--line);border-radius:40px;padding:7px 16px;font-size:15px;font-weight:700;color:var(--ink2);margin-bottom:26px}
-.hero-tag b{color:var(--brand)}
+/* ---------- 히어로 (포스터) — 검정 바탕 + 큰 사진, 아래 끝은 크림으로 서서히 ---------- */
+.hero{background:var(--night);color:#fff;position:relative;overflow:hidden}
+.hero-grid{position:relative;display:flex;align-items:center;min-height:min(740px,calc(100vh - 64px))}
+.hero-copy{position:relative;z-index:2;width:min(620px,52%);padding:64px 0 72px max(24px,calc((100vw - 1160px)/2 + 24px));display:flex;flex-direction:column}
+.hero-tag{align-self:flex-start;background:#ffffff14;border:1px solid #ffffff33;border-radius:4px;padding:7px 14px;font-size:15px;font-weight:700;color:#f3e6d6;margin-bottom:26px}
+.hero-tag b{color:var(--hi)}
 h1{font-size:clamp(42px,5.2vw,70px);line-height:1.22;letter-spacing:-.06em;font-weight:800;margin:0 0 22px}
-h1 em{color:var(--brand)}
-.hero-sub{font-size:19px;color:var(--ink2);margin:0 0 34px;max-width:520px}
+.hero h1 em{color:var(--hi)}
+.hero-sub{font-size:19px;color:#ecdfd1;margin:0 0 34px;max-width:520px}
 .trust{display:grid;grid-template-columns:repeat(3,auto);justify-content:start;gap:0;margin:0 0 36px;padding:0;list-style:none}
-.trust li{padding:0 28px;border-left:1px solid var(--line)}
+.trust li{padding:0 28px;border-left:1px solid #ffffff33}
 .trust li:first-child{padding-left:0;border-left:0}
-.trust b{display:block;font-size:clamp(34px,3.6vw,46px);font-weight:900;letter-spacing:-.05em;line-height:1.1;color:var(--ink)}
-.trust b small{font-size:.45em;font-weight:800;margin-left:3px;letter-spacing:0;color:var(--brand)}
-.trust span{display:block;margin-top:6px;font-size:14.5px;color:var(--muted);font-weight:600}
+.trust b{display:block;font-size:clamp(34px,3.6vw,46px);font-weight:900;letter-spacing:-.05em;line-height:1.1;color:#fff}
+.trust b small{font-size:.45em;font-weight:800;margin-left:3px;letter-spacing:0;color:var(--hi)}
+.trust span{display:block;margin-top:6px;font-size:14.5px;color:#d9c7b4;font-weight:600}
 .actions{display:flex;flex-wrap:wrap;gap:12px}
-.seat-chip{margin-top:22px;display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:700;color:var(--ink2)}
-.seat-chip .dot{width:10px;height:10px;border-radius:50%;background:var(--cta);box-shadow:0 0 0 4px #0b7a5822}
-.seat-chip b{color:var(--cta)}
-.hero-photo{position:relative;margin:32px max(24px,calc((100vw - 1160px)/2 + 24px)) 32px 0;min-height:420px;border-radius:28px;overflow:hidden;box-shadow:0 24px 60px #3b2a2026}
-.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%}
-.hero-photo:before{content:'';position:absolute;inset:0;z-index:1;background:linear-gradient(0deg,#1f151099 0%,#1f151000 32%)}
-.hero-photo figcaption{position:absolute;left:36px;bottom:30px;z-index:2;font-size:15px;color:#f3e6d6;line-height:1.55}
+.seat-chip{margin-top:22px;display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:700;color:#f3e6d6}
+.seat-chip .dot{width:10px;height:10px;border-radius:50%;background:var(--cta-l);box-shadow:0 0 0 4px #5be0b533}
+.seat-chip b{color:var(--hi)}
+/* 사진이 히어로 전체를 채우고, 그 위에 검은 막 · 흰 글씨. 넓은 사진이 오면 object-position 만 맞춘다 */
+.hero-photo{position:absolute;inset:0;margin:0;z-index:1;overflow:hidden}
+.hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 6%;transform-origin:60% 30%;animation:heroZoom 2.4s cubic-bezier(.2,.7,.2,1) both;will-change:transform}
+@keyframes heroZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
+.hero-photo:before{content:'';position:absolute;inset:-1px 0;z-index:1;background:linear-gradient(0deg,var(--night) 0%,#1a110c00 28%),linear-gradient(90deg,#1a110ce0 0%,#1a110ca8 45%,#1a110c66 100%)}
+.hero-photo figcaption{position:absolute;right:36px;bottom:36px;z-index:2;font-size:15px;color:#f3e6d6;line-height:1.55;text-align:right;text-shadow:0 1px 8px #0008}
 .hero-photo figcaption b{display:block;font-size:22px;color:#fff;letter-spacing:-.04em}
-.stamp{position:absolute;right:28px;top:28px;z-index:3;width:120px;height:120px;border-radius:50%;background:var(--hi);display:grid;place-items:center;text-align:center;font-weight:900;font-size:17px;line-height:1.25;color:var(--ink);transform:rotate(8deg);box-shadow:0 8px 20px #1f151033}
+.stamp{position:absolute;right:36px;top:36px;z-index:3;width:120px;height:120px;border-radius:50%;background:var(--hi);display:grid;place-items:center;text-align:center;font-weight:900;font-size:17px;line-height:1.25;color:var(--ink);transform:rotate(8deg);box-shadow:0 8px 20px #0005}
 .stamp small{display:block;font-size:13px;font-weight:800;margin-top:2px}
+.hero-fade{height:140px;background:linear-gradient(180deg,var(--night) 0%,#5a4636 35%,#d9c8b5 72%,#fff8ef 100%)}
 
 /* ---------- 약속 3 ---------- */
 .promise{padding:8px 0 24px}
-.promise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.pm{padding:24px 26px;background:#fff;border:1px solid var(--line);border-radius:var(--r-m)}
+.promise-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.pm{padding:22px 4px 6px;border-top:3px solid var(--ink)}
+.pm b{font-size:22px}
 .pm .k{font-size:14px;font-weight:900;color:var(--brand-d);letter-spacing:.02em}
 .pm b{display:block;font-size:24px;font-weight:900;letter-spacing:-.05em;line-height:1.35;margin:4px 0 6px}
 .pm p{margin:0;font-size:15.5px;color:var(--ink2);line-height:1.6}
@@ -159,19 +163,19 @@ h1 em{color:var(--brand)}
 .pass b{color:var(--cta-d)}
 .record{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;font-size:17px;font-weight:700;color:var(--ink)}
 .record .steps{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
-.record .steps span{background:var(--cream);border:1px solid var(--line);border-radius:30px;padding:4px 14px;font-size:15px}
+.record .steps span{background:var(--cream);border:1px solid var(--line);border-radius:4px;padding:4px 14px;font-size:15px}
 .record .steps i{font-style:normal;color:var(--brand)}
 
 /* 자료 사진 롤링 */
 .shot{position:relative;aspect-ratio:16/9;background:#fff;border-radius:var(--r-l);overflow:hidden}
 .shot img{width:100%;height:100%;object-fit:contain;background:#fff}
-.shot figcaption{position:absolute;left:16px;bottom:16px;background:#1f1510d9;color:#fff;font-size:15px;font-weight:700;padding:6px 14px;border-radius:30px}
+.shot figcaption{position:absolute;left:16px;bottom:16px;background:#1f1510d9;color:#fff;font-size:15px;font-weight:700;padding:6px 12px;border-radius:4px}
 
 /* ---------- 누구에게 ---------- */
 .fit-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:20px}
-.fit-box{background:#fff;border:1px solid var(--line);border-radius:var(--r-l);padding:30px}
+.fit-box{background:transparent;border-top:3px solid var(--cta);padding-left:0!important;padding-right:0!important;border-radius:var(--r-l);padding:30px}
 .fit-box h3{font-size:21px;margin:0 0 12px;letter-spacing:-.04em}
-.fit-box.no{background:#fffdfa}
+.fit-box.no{background:transparent;border-top-color:#a24a37}
 .fit-box ul{list-style:none;padding:0;margin:0}
 .fit-box li{padding:10px 0 10px 34px;position:relative;border-top:1px solid var(--line);font-size:16.5px}
 .fit-box li:first-child{border-top:0}
@@ -187,7 +191,7 @@ h1 em{color:var(--brand)}
 
 /* ---------- 수업 방식 ---------- */
 .loop{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:0 0 30px}
-.loop span{background:#fff;border:1px solid var(--line);border-radius:30px;padding:9px 18px;font-weight:800;font-size:16px}
+.loop span{background:#fff;border:1px solid var(--line);border-radius:4px;padding:9px 18px;font-weight:800;font-size:16px}
 .loop span.ok{background:var(--cta);color:#fff}
 .loop i{font-style:normal;color:var(--brand-d);font-weight:900}
 .timing{display:grid;grid-template-columns:2fr 1fr 1fr;gap:14px;margin-bottom:44px}
@@ -237,7 +241,7 @@ h1 em{color:var(--brand)}
 .step h3{font-size:19px;letter-spacing:-.04em;line-height:1.4;margin:4px 0 8px}
 .step p{font-size:15px;margin:0;line-height:1.6;color:var(--ink2)}
 .step.now p{color:var(--ink2)}
-.step .when{display:inline-block;margin-top:10px;font-size:13px;font-weight:800;border:1px solid currentColor;border-radius:20px;padding:1px 10px;opacity:.85}
+.step .when{display:inline-block;margin-top:10px;font-size:13px;font-weight:800;border:1px solid currentColor;border-radius:3px;padding:1px 8px;opacity:.85}
 
 /* ---------- 선생님 · 후기 ---------- */
 .teacher{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
@@ -251,16 +255,16 @@ h1 em{color:var(--brand)}
 .timeline b{color:var(--brand-d);font-weight:800}
 .books{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:12px;margin-top:26px}
 .books img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px;box-shadow:0 8px 20px #1f151026}
-.proof-block{margin-top:72px}
+.proof-block{margin-top:96px}
 .disclose{background:#fff;border-left:6px solid var(--hi);border-radius:var(--r-s);padding:16px 20px;font-size:15.5px;margin:0 0 24px;color:var(--ink2)}
 .disclose strong{color:var(--ink)}
 .results{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:24px}
 .result{background:#fff;border:1px solid var(--line);border-radius:var(--r-m);padding:22px 24px}
 .result b{display:block;font-size:52px;font-weight:900;letter-spacing:-.06em;line-height:1.1}
 .result span{font-size:15px;color:var(--ink2);font-weight:600}
-.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.review{background:#fff;border:1px solid var(--line);border-radius:var(--r-m);padding:24px;display:flex;flex-direction:column;gap:10px}
-.review.featured{grid-column:span 3;background:#fdf2d2}
+.reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 32px}
+.review{border-top:2px solid var(--ink);padding:20px 2px 6px;display:flex;flex-direction:column;justify-content:space-between;gap:14px}
+.review.featured{grid-column:span 3;border-top:0;background:#fdf2d2;padding:30px 32px;border-radius:var(--r-l)}
 .rv-text{margin:0;font-size:17px;line-height:1.7;font-weight:600}
 .review.featured .rv-text{font-size:21px}
 .rv-meta{margin:0;font-size:15px;color:var(--muted);font-weight:700}
@@ -378,11 +382,12 @@ footer b{color:#fff}
 /* ---------- 반응형 ---------- */
 @media(max-width:1000px){
   .links{display:none}
-  .hero-grid{grid-template-columns:1fr;min-height:0}
-  .hero-photo{order:-1;min-height:0;aspect-ratio:16/11;max-height:48vh;margin:16px 24px 0;border-radius:20px}
-  .hero-photo figcaption{left:24px;bottom:18px}
-  .hero-copy{padding:28px 24px 56px}
-  .stamp{right:14px;top:14px;width:96px;height:96px;font-size:14px}
+  .hero-grid{flex-direction:column;align-items:stretch;min-height:0}
+  .hero-grid{min-height:calc(100svh - 64px)}
+  .hero-photo img{object-position:58% 8%}
+  .hero-photo:before{background:linear-gradient(0deg,var(--night) 0%,#1a110cd9 45%,#1a110c8c 100%)}
+  .hero-photo figcaption,.stamp{display:none}
+  .hero-copy{width:auto;padding:48px 24px 40px;justify-content:flex-end}
   .road{grid-template-columns:1fr 1fr}
   .teacher,.price-grid,.apply-grid,.two{grid-template-columns:1fr;gap:32px}
   .teacher-photo{max-width:440px}
@@ -393,8 +398,8 @@ footer b{color:#fff}
   .wrap{padding:0 18px}
   .sec{padding:64px 0}
   .brand-text{font-size:16px}
-  .hero-copy{padding:24px 18px 40px}
-  .hero-photo{margin:12px 18px 0}
+  .hero-copy{padding:40px 18px 32px}
+  .hero-fade{height:96px}
   .hero-tag{margin-bottom:16px;font-size:14px}
   .hero-sub{margin-bottom:24px}
   .actions{order:1}
@@ -405,10 +410,9 @@ footer b{color:#fff}
   .trust li{padding:0 16px}
   .trust b{font-size:30px}
   .trust span{font-size:13px}
-  .hero-photo figcaption{display:none}
   .promise-grid{grid-template-columns:1fr}
-  .promise-grid{gap:10px}
-  .pm{padding:18px 20px}
+  .promise-grid{gap:22px}
+  .pm{padding:16px 0 0}
   .oc-body{padding:26px 22px}
   .fit-grid,.glossary,.weeks,.faq-grid,.rules,.road,.hours,.results,.reviews{grid-template-columns:1fr}
   .review.featured{grid-column:auto}
@@ -427,7 +431,12 @@ footer b{color:#fff}
   .week dl>div{grid-template-columns:78px 1fr}
   .car-arrows{display:none}
 }
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.rail{scroll-behavior:auto}.btn.pulse{animation:none}.btn,.sticky{transition:none}}
+.rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease var(--d,0s),transform .8s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+.rv.in{opacity:1;transform:none}
+.hero-copy>*{animation:heroUp .9s cubic-bezier(.2,.7,.2,1) both}
+.hero-copy>:nth-child(2){animation-delay:.08s}.hero-copy>:nth-child(3){animation-delay:.16s}.hero-copy>:nth-child(4){animation-delay:.24s}.hero-copy>:nth-child(5){animation-delay:.32s}.hero-copy>:nth-child(6){animation-delay:.4s}
+@keyframes heroUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.hero-copy>*,.hero-photo img{animation:none}html{scroll-behavior:auto}.rail{scroll-behavior:auto}.btn.pulse{animation:none}.btn,.sticky{transition:none}}
 </style>
 </head>
 <body>
@@ -477,6 +486,7 @@ footer b{color:#fff}
     </figure>
   </div>
 </section>
+<div class="hero-fade" aria-hidden="true"></div>
 
 <!-- ================= 약속 3 ================= -->
 <section class="promise" aria-label="이 과정의 약속">
@@ -700,16 +710,21 @@ footer b{color:#fff}
       </div>
     </div>
 
-    <!-- 후기 · 실적: 실제 후기와 숫자가 들어오면 hidden 을 지운다(지어서 넣지 않는다) -->
-    <div class="proof-block" id="reviews-block" hidden>
-      <div class="disclose"><strong>먼저 밝혀둘게요.</strong> 아래 후기와 실적은 재현샘이 편입학원에서 강의하던 시기(2001–2022) 수강생 기준입니다. 1:1 과외는 이번이 첫 기수입니다.</div>
-      <div class="results">
-        <div class="result"><b>000<small style="font-size:22px">명</small></b><span>학원 강의 수강생 합격</span></div>
-        <div class="result"><b>000<small style="font-size:22px">명</small></b><span>OO대학 합격</span></div>
-        <div class="result"><b>000<small style="font-size:22px">명</small></b><span>OO대학 합격</span></div>
-      </div>
+    <!-- 후기: 학원 강의 시기(2001–2022) 수강생 후기 원문에서 발췌(대표 11/10 제공 자료). 지어서 넣지 않는다.
+         합격 숫자 칸(.results)은 실제 숫자가 오면 다시 넣는다 -->
+    <div class="proof-block" id="reviews-block">
+      <span class="eyebrow">수강생 후기</span>
+      <h2>“문제만 보면<br>쌤 목소리가 들려요.”</h2>
+      <p class="lead">재현샘이 편입학원에서 강의하던 시기 수강생들이 남긴 후기 원문에서 골랐습니다. 1:1 과외는 이번이 첫 기수입니다.</p>
       <div class="reviews">
-        <article class="review featured"><p class="rv-text">“대표 후기 원문”</p><p class="rv-meta">OO대 합격 · 학년/상황</p></article>
+        <article class="review featured"><p class="rv-text">“특강들을 듣고 기출문제를 분석하고 백지테스트를 해가면서 스스로 체화시켰습니다. … 정말 어디에서 들을 수 없는 훌륭한 강의라고 생각합니다.”</p><p class="rv-meta">김○주</p></article>
+        <article class="review"><p class="rv-text">“노베이스에서 영어를 처음 시작할 때 재현쌤을 만났습니다. … 문제만 보면 쌤 목소리가 들리는 기적을 경험했습니다.”</p><p class="rv-meta">김○진</p></article>
+        <article class="review"><p class="rv-text">“재현쌤과 함께하는 백지시험은 제 편입공부에 있어서 가장 중요한 기초를 다지는 데 정말 많은 도움이 되었습니다.”</p><p class="rv-meta">학원 수강생</p></article>
+        <article class="review"><p class="rv-text">“수능영어에서 1문제조차 맞추지 못한 저를 편입영어에선 10문제 이상을 맞추게 해주셨습니다.”</p><p class="rv-meta">학원 수강생</p></article>
+        <article class="review"><p class="rv-text">“처음에 기출 30점 나왔을 때도 할 수 있다고 꾸준히 해보자고 항상 응원해주셨던 재현쌤 아니었다면 이런 결과 절대 얻을 수 없었을 거예요.”</p><p class="rv-meta">학원 수강생 · 최초합격</p></article>
+        <article class="review"><p class="rv-text">“편입은 양이 너무 많다는 것 하나만으로 겁이 났었는데, 그럴 때마다 쌤께서 분량을 자세하게 정해주셨고 끝나는 날까지 솔루션을 주셨습니다.”</p><p class="rv-meta">학원 수강생</p></article>
+        <article class="review"><p class="rv-text">“문법을 가장 어려워했는데 재현샘 덕분에 문법이 어려웠던 가천대 합격했습니다.”</p><p class="rv-meta">유○혜 · 가천대 합격</p></article>
+        <article class="review"><p class="rv-text">“문제 풀다가 모르는 게 있어서 질문드리면 낮이든 밤이든 정말 가리지 않고 다 친절하게 답변해주십니다.”</p><p class="rv-meta">조○숙 · 세종대 1차 합격</p></article>
       </div>
     </div>
   </div>
@@ -883,7 +898,7 @@ footer b{color:#fff}
       <details><summary>영어 기초가 거의 없어도 시작할 수 있나요?</summary><p>시작할 수 있습니다. 수업 전 설문과 진단으로 현재 영어 수준을 확인하고, 필요한 기초부터 학습합니다. 시작 수준과 하루 공부량에 따라 8주 동안 진행할 범위를 조정합니다.</p></details>
       <details><summary>하루 6시간을 공부해야 하나요?</summary><p>소개한 8주 집중 계획은 수업 외에 하루 6시간 이상 개인 공부를 할 수 있다는 전제입니다. 하루 4시간 정도라면 기초·기본어휘, 기본문법, 기본구문독해를 우선 학습합니다. 상담에서 실제 가능한 시간에 맞는 목표를 정합니다.</p></details>
       <details><summary>첫 3회 환불은 어떻게 받나요?</summary><p>3회차 수업이 끝난 뒤 3일 이내에 환불을 요청하면 수업료 전액을 환불합니다. 이유를 따로 설명하지 않아도 됩니다. 그 이후의 중도 해지는 관련 법령의 교습비 반환 기준에 따릅니다.</p></details>
-      <details><summary>과외 후기가 없는 이유가 뭔가요?</summary><p>1:1 온라인 과외는 이번이 첫 기수이기 때문입니다. 1기 수강생은 동의를 받아 진단부터 8주 총정리까지의 점수 변화를 공개할 예정입니다.</p></details>
+      <details><summary>과외 후기가 없는 이유가 뭔가요?</summary><p>1:1 온라인 과외는 이번이 첫 기수이기 때문입니다. 페이지의 후기는 편입학원 강의 시기 수강생 후기 원문에서 발췌했습니다. 1기 수강생은 동의를 받아 진단부터 8주 총정리까지의 점수 변화를 공개할 예정입니다.</p></details>
       <details><summary>어휘 강의가 없는데 어휘는 어떻게 공부하나요?</summary><p>첫 수업에서 발음기호를 읽는 연습을 합니다. 이후 재현샘이 정한 범위를 스스로 학습하고, 어휘 테스트로 암기와 이해 상태를 확인합니다.</p></details>
       <details><summary>8주를 수료하면 혼자 공부해서 합격할 수 있나요?</summary><p>수료 후 독학으로 합격을 준비할 수 있는 기본 실력과 공부 방법을 갖추는 것이 목표입니다. 수료만으로 합격이 결정되는 것은 아니며, 이후 어휘·기출·실전 학습을 이어가야 합니다. 진행 방향은 월 2회 상담으로 점검합니다.</p></details>
       <details><summary>수료 후 인강이나 학원을 이용해도 되나요?</summary><p>물론입니다. 독학을 이어가거나 필요에 따라 인강·학원을 선택할 수 있습니다. 어떤 방식이든 배운 내용을 스스로 확인하고 복습하는 방법을 활용하도록 안내합니다.</p></details>
@@ -914,7 +929,7 @@ footer b{color:#fff}
         <b>교습비 반환 기준</b>: 수업 시작 전 전액 환불 / 첫 3회 수업 후 3일 이내 요청 시 낸 금액 전액 환불 / 이후 낸 금액 기준으로 관련 법령에 따라 반환
       </div>
     </div>
-    <p class="legal">※ 본 과정은 합격을 보장하지 않습니다.</p>
+    <p class="legal">※ 본 과정은 합격을 보장하지 않습니다. 후기는 편입학원 강의 시기(2001–2022) 수강생 후기 원문 발췌이며, 1:1 과외 성과가 아닙니다.</p>
   </div>
 </footer>
 
@@ -964,6 +979,19 @@ const CONFIG = {
   $$('[data-retention]').forEach(e=>e.textContent=CONFIG.retention);
   $$('[data-phone]').forEach(e=>e.textContent=CONFIG.phoneDisplay);
   $$('[data-phone-link]').forEach(e=>e.href='tel:'+CONFIG.phone);
+
+  /* 스크롤 펼침: 구역 제목은 한 번에, 카드 묶음은 차례로(80ms씩, 최대 6개) */
+  if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    const groups='.promise-grid,.fit-grid,.hours,.loop,.timing,.weeks,.road,.timeline,.use-list,.rules,.faq-grid,.results,.reviews,.contact-list';
+    const items=[];
+    $$('.sec .eyebrow,.sec h2,.sec .lead,.carousel,.record,.cta-row,.vocab,.price,.cmp-wrap,.support-card,.seat-card,.survey,.name-big').forEach(e=>items.push([e,0]));
+    $$(groups).forEach(g=>[...g.children].forEach((c,i)=>items.push([c,Math.min(i,6)*0.08])));
+    const rio=new IntersectionObserver(es=>es.forEach(en=>{ if(en.isIntersecting){ en.target.classList.add('in'); rio.unobserve(en.target); } }),{rootMargin:'0px 0px -8% 0px',threshold:.08});
+    items.forEach(([e,d])=>{ e.classList.add('rv'); if(d) e.style.setProperty('--d',d+'s'); rio.observe(e); });
+    /* 히어로 사진은 내릴 때 살짝 늦게 따라온다 */
+    const hp=$('.hero-photo img'); let tick=false;
+    addEventListener('scroll',()=>{ if(tick) return; tick=true; requestAnimationFrame(()=>{ hp.style.translate='0 '+(Math.min(scrollY,900)*0.18)+'px'; tick=false; }); },{passive:true});
+  }
 
   /* 있는 사진만 고르기 */
   const loadable=src=>new Promise(res=>{const i=new Image();i.onload=()=>res(true);i.onerror=()=>res(false);i.src=src;});
