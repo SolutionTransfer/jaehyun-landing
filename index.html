@@ -404,7 +404,7 @@ footer b{color:#fff}
 .sticky .btns{display:flex;gap:10px;flex-shrink:0}
 
 /* 움직임: 약속 판 한 번 · 강조 숫자만 짧게 */
-.rv{opacity:0;transform:translateY(24px);transition:opacity .5s ease var(--d,0s),transform .55s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
+.rv{opacity:0;transform:translateY(10px);transition:opacity .45s ease var(--d,0s),transform .45s cubic-bezier(.2,.7,.2,1) var(--d,0s)}
 .rv.quick{transform:translateY(10px);transition-duration:.35s,.35s}
 .rv.in{opacity:1;transform:none}
 
@@ -1044,6 +1044,7 @@ footer b{color:#fff}
   </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 /* ===== 여기만 고치면 됩니다 ===== */
 const CONFIG = {
@@ -1113,6 +1114,19 @@ const CONFIG = {
     if(scrollY>=8) go(); else addEventListener('scroll',go,{passive:true});
     $$('.sec .head, .sec .apply-side>.eyebrow, .sec .support>div>.eyebrow').forEach(e=>{ e.classList.add('rv'); rio.observe(e); });
     $$('.price .amount,.seat .count,.timing strong,.support-card .large').forEach(e=>{ e.classList.add('rv','quick'); rio.observe(e); });
+  }
+
+  /* 부드러운 스크롤 — 데스크톱 마우스 휠만, 살짝(손 스크롤 · 동작 줄이기 설정은 그대로) */
+  if(window.Lenis && matchMedia('(pointer:fine) and (min-width:1001px)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches){
+    document.documentElement.style.scrollBehavior='auto';
+    const lenis=new Lenis({lerp:0.14,wheelMultiplier:0.95,smoothWheel:true});
+    const raf=t=>{ lenis.raf(t); requestAnimationFrame(raf); }; requestAnimationFrame(raf);
+    document.addEventListener('click',e=>{
+      const a=e.target.closest('a[href^="#"]'); if(!a) return;
+      const id=a.getAttribute('href'); if(id.length<2) return;
+      const el=document.querySelector(id); if(!el) return;
+      e.preventDefault(); lenis.scrollTo(el,{offset:-16,duration:1});
+    });
   }
 
   /* 흐르는 후기 — 한 바퀴가 화면보다 넓게 채운 뒤 한 벌 더 붙여 끊김 없이 */
