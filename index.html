@@ -72,7 +72,6 @@ img{max-width:100%;display:block}
 /* ---------- 공통 섹션 ---------- */
 .sec{padding:96px 0}
 .eyebrow{display:inline-block;color:var(--brand-d);font-weight:900;font-size:15px;letter-spacing:.02em;margin-bottom:14px}
-.eyebrow:before{content:'';display:inline-block;width:22px;height:3px;background:currentColor;vertical-align:middle;margin-right:10px;border-radius:2px}
 .dark .eyebrow{color:var(--hi)}
 h2{font-size:clamp(28px,4vw,44px);line-height:1.35;letter-spacing:-.045em;font-weight:800;margin:0 0 16px}
 h2 em,h1 em{font-style:normal;color:var(--brand)}
@@ -114,8 +113,8 @@ h1{font-size:clamp(42px,5.2vw,70px);line-height:1.22;letter-spacing:-.06em;font-
 .hero-photo:before{content:'';position:absolute;inset:-1px 0;z-index:1;background:linear-gradient(0deg,var(--night) 0%,#1a110c00 28%),linear-gradient(90deg,#1a110ce0 0%,#1a110ca8 45%,#1a110c66 100%)}
 .hero-photo figcaption{position:absolute;right:36px;bottom:36px;z-index:2;font-size:15px;color:#f3e6d6;line-height:1.55;text-align:right;text-shadow:0 1px 8px #0008}
 .hero-photo figcaption b{display:block;font-size:22px;color:#fff;letter-spacing:-.04em}
-.stamp{position:absolute;right:36px;top:36px;z-index:3;width:120px;height:120px;border-radius:50%;background:var(--hi);display:grid;place-items:center;text-align:center;font-weight:900;font-size:17px;line-height:1.25;color:var(--ink);transform:rotate(8deg);box-shadow:0 8px 20px #0005}
-.stamp small{display:block;font-size:13px;font-weight:800;margin-top:2px}
+.stamp{position:absolute;right:max(24px,calc((100vw - 1160px)/2 + 24px));top:40px;z-index:3;background:var(--hi);text-align:left;font-weight:800;font-size:16px;line-height:1.4;color:var(--ink);padding:12px 16px;border-radius:3px}
+.stamp small{display:block;font-size:13.5px;font-weight:600;margin-top:2px}
 .hero-fade{height:140px;background:linear-gradient(180deg,var(--night) 0%,#5a4636 35%,#d9c8b5 72%,#fff8ef 100%)}
 
 /* ---------- 약속 3 ---------- */
@@ -158,7 +157,7 @@ h1{font-size:clamp(42px,5.2vw,70px);line-height:1.22;letter-spacing:-.06em;font-
 .ba .b{background:#fff;color:var(--muted);border:1px solid var(--line)}
 .ba .a{background:#e3f3ec;color:var(--ink);font-weight:700}
 .ba .arrow{display:grid;place-items:center;color:var(--cta);font-weight:900;padding:0}
-.ba small{display:block;font-size:12.5px;font-weight:900;margin-bottom:3px;opacity:.75;letter-spacing:.04em}
+.ba small{display:block;font-size:13px;font-weight:800;margin-bottom:3px;opacity:.75}
 .pass{margin:0;font-size:15px;color:var(--ink2)}
 .pass b{color:var(--cta-d)}
 .record{margin-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px;font-size:17px;font-weight:700;color:var(--ink)}
@@ -177,10 +176,10 @@ h1{font-size:clamp(42px,5.2vw,70px);line-height:1.22;letter-spacing:-.06em;font-
 .fit-box h3{font-size:21px;margin:0 0 12px;letter-spacing:-.04em}
 .fit-box.no{background:transparent;border-top-color:#a24a37}
 .fit-box ul{list-style:none;padding:0;margin:0}
-.fit-box li{padding:10px 0 10px 34px;position:relative;border-top:1px solid var(--line);font-size:16.5px}
+.fit-box li{padding:10px 0 10px 30px;position:relative;border-top:1px solid var(--line);font-size:16.5px}
 .fit-box li:first-child{border-top:0}
-.fit-box li:before{content:'✓';position:absolute;left:0;top:11px;width:22px;height:22px;border-radius:50%;background:var(--cta);color:#fff;font-size:13px;font-weight:900;display:grid;place-items:center}
-.fit-box.no li:before{content:'✕';background:#a24a37}
+.fit-box li:before{content:'✓';position:absolute;left:4px;top:10px;color:var(--cta);font-size:17px;font-weight:900}
+.fit-box.no li:before{content:'✕';color:#a24a37}
 .hours{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px}
 .hour{background:#fff;border:1px solid var(--line);border-radius:var(--r-m);padding:22px 24px}
 .hour.main{background:#fdf2d2;border:1px solid #f0d98a}
@@ -270,12 +269,30 @@ h1{font-size:clamp(42px,5.2vw,70px);line-height:1.22;letter-spacing:-.06em;font-
 .rv-meta{margin:0;font-size:15px;color:var(--muted);font-weight:700}
 .review.featured .rv-meta{color:var(--muted)}
 
+/* 후기 — 핵심 한 구절만 형광펜, 나머지는 보통 굵기 */
+.rv-hero{margin:8px 0 34px;padding:34px 38px 30px;background:#fff;border-radius:var(--r-l);box-shadow:0 18px 40px #3b2a2014;position:relative}
+.rv-hero blockquote{margin:0;font-size:clamp(19px,2vw,23px);line-height:1.7;font-weight:500;color:var(--ink2);position:relative}
+.rv-hero figcaption,.rvc figcaption{display:flex;align-items:center;gap:10px;margin-top:18px;font-size:14.5px;font-weight:700;color:var(--ink2)}
+.rv-hero figcaption em,.rvc figcaption em{font-style:normal;font-size:12.5px;font-weight:800;color:var(--brand-d);background:#f6e7d3;border-radius:3px;padding:2px 8px}
+.av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--hi);font-size:13px;font-weight:800}
+mark{background:linear-gradient(transparent 55%,#f4c54299 55%);color:var(--ink);font-weight:800;padding:0 2px}
+.rv-rows{display:grid;gap:18px;margin:0 calc(50% - 50vw);padding:6px 0 10px}
+.rv-row{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.rv-track{display:flex;gap:18px;width:max-content;padding:4px 0;animation:rvFlow 70s linear infinite}
+.rv-row.rev .rv-track{animation-direction:reverse;animation-duration:60s}
+.rv-row:hover .rv-track,.rv-row:focus-within .rv-track{animation-play-state:paused}
+@keyframes rvFlow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.rvc{position:relative;margin:0;width:340px;flex:none;background:#fff;border-radius:var(--r-l);padding:24px 24px 20px;box-shadow:0 10px 26px #3b2a2012;display:flex;flex-direction:column;justify-content:space-between}
+.rvc blockquote{margin:0;font-size:15.5px;line-height:1.75;font-weight:500;color:var(--ink2);position:relative}
+@media(max-width:760px){.rvc{width:280px;padding:26px 20px 18px}.rv-hero{padding:28px 22px 24px}}
+@media(prefers-reduced-motion:reduce){.rv-track{animation:none}.rv-row{overflow-x:auto}}
+
 /* ---------- 수료 후 ---------- */
 .two{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
 .use-list{list-style:none;padding:0;margin:0}
 .use-list li{padding:14px 0 14px 46px;border-top:1px solid #1f15101f;position:relative;font-size:16px;color:var(--ink2)}
 .use-list li b{display:block;font-size:17.5px;color:var(--ink)}
-.use-list li:before{content:attr(data-n);position:absolute;left:0;top:15px;width:32px;height:32px;border-radius:50%;background:var(--ink);color:#fff;font-weight:900;display:grid;place-items:center;font-size:15px}
+.use-list li:before{content:attr(data-n);position:absolute;left:4px;top:12px;color:var(--brand);font-weight:800;font-size:22px;line-height:1.2}
 .support-card{background:#fff;border:1px solid var(--line);border-radius:var(--r-l);padding:32px}
 .support-card .large{font-size:44px;font-weight:900;letter-spacing:-.06em;color:var(--brand-d);line-height:1.2}
 .support-card h3{font-size:19px;margin:6px 0 16px;line-height:1.5}
@@ -473,7 +490,7 @@ footer b{color:#fff}
         <li><b>7만<small>회+</small></b><span>편입 학습 상담</span></li>
       </ul>
       <div class="actions">
-        <a class="btn cta lg pulse" href="#apply">상담 신청하기 <span aria-hidden="true">→</span></a>
+        <a class="btn cta lg" href="#apply">상담 신청하기 <span aria-hidden="true">→</span></a>
         <a class="btn kakao lg" data-kakao href="#" target="_blank" rel="noopener"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 3C6.5 3 2 6.6 2 11c0 2.8 1.8 5.3 4.6 6.7l-1 3.6c-.1.4.3.7.6.5l4.3-2.8c.5.1 1 .1 1.5.1 5.5 0 10-3.6 10-8S17.5 3 12 3z"/></svg>카톡으로 물어보기</a>
       </div>
       <p class="seat-chip"><span class="dot" aria-hidden="true"></span><span><span data-month></span> 모집 · 정원 7명 · 남은 자리 <b><span data-left></span>자리</b></span></p>
@@ -481,7 +498,7 @@ footer b{color:#fff}
     <!-- 넓은 강의 사진이 오면 images/hero-lecture.jpg 를 바꾸면 된다 -->
     <figure class="hero-photo">
       <img src="images/hero-lecture.jpg" alt="편입학원에서 강의하는 재현샘" fetchpriority="high">
-      <div class="stamp" aria-hidden="true"><div>첫 3회<br>들어보고<small>마음에 안 들면<br>전액 환불</small></div></div>
+      <div class="stamp" aria-hidden="true">첫 3회 들어보고<small>마음에 안 들면 전액 환불</small></div>
       <figcaption><b>이재현</b>한양대 졸업 · 편입학원 강의 2001–2022</figcaption>
     </figure>
   </div>
@@ -491,16 +508,16 @@ footer b{color:#fff}
 <!-- ================= 약속 3 ================= -->
 <section class="promise" aria-label="이 과정의 약속">
   <div class="wrap promise-grid">
-    <div class="pm"><span class="k">확인</span><b>백지테스트</b><p>책을 덮고 백지에 써서, 이해와 암기를 끝까지 확인합니다.</p></div>
-    <div class="pm"><span class="k">관리</span><b>수료 후에도 월 2회 상담</b><p>목표 시험이 끝날 때까지, 추가 상담료 없이.</p></div>
-    <div class="pm"><span class="k">보장</span><b>첫 3회 환불</b><p>3회 들어보고 마음에 안 들면 전액 환불합니다.</p></div>
+    <div class="pm"><b>백지테스트</b><p>책을 덮고 백지에 써서, 이해와 암기를 끝까지 확인합니다.</p></div>
+    <div class="pm"><b>수료 후에도 월 2회 상담</b><p>목표 시험이 끝날 때까지, 추가 상담료 없이.</p></div>
+    <div class="pm"><b>첫 3회 환불</b><p>3회 들어보고 마음에 안 들면 전액 환불합니다.</p></div>
   </div>
 </section>
 
 <!-- ================= 01 성과 — 한 장씩 넘기기 ================= -->
 <section class="sec" id="outcome">
   <div class="wrap">
-    <span class="eyebrow">01 · 8주 뒤 달라지는 것</span>
+    <span class="eyebrow">8주 뒤 달라지는 것</span>
     <h2>불안한 느낌 대신,<br><em>점수로 확인된 실력이 남습니다.</em></h2>
     <p class="lead">매주 테스트로 확인하고, 기준을 넘을 때까지 반복합니다.</p>
 
@@ -510,22 +527,22 @@ footer b{color:#fff}
         <article class="slide" aria-label="1 / 4"><div class="oc">
           <div class="oc-photo"><img src="images/ex-grammar.jpg" alt="어휘·문법 수업 예시" loading="lazy"></div>
           <div class="oc-body"><span class="no">어휘 · 문법</span><h3>외운 단어와 문법을<br>문제에 적용합니다</h3>
-            <div class="ba"><div class="b"><small>BEFORE</small>외웠다가 잊고, 문법은 알쏭달쏭</div><div class="arrow" aria-hidden="true">→</div><div class="a"><small>AFTER</small>백지에 쓰고, 개념으로 문제를 푼다</div></div>
+            <div class="ba"><div class="b"><small>지금</small>외웠다가 잊고, 문법은 알쏭달쏭</div><div class="arrow" aria-hidden="true">→</div><div class="a"><small>8주 뒤</small>백지에 쓰고, 개념으로 문제를 푼다</div></div>
             <p class="pass"><b>통과 기준</b> · 문법 백지테스트 100% / 어휘 테스트 90점 이상</p></div></div></article>
         <article class="slide" aria-label="2 / 4"><div class="oc">
           <div class="oc-photo"><img src="images/ex-syntax.jpg" alt="구문독해 수업 예시" loading="lazy"></div>
           <div class="oc-body"><span class="no">구문독해</span><h3>긴 문장도 구조를 나눠<br>스스로 해석합니다</h3>
-            <div class="ba"><div class="b"><small>BEFORE</small>감으로 뜻을 짐작해서 읽는다</div><div class="arrow" aria-hidden="true">→</div><div class="a"><small>AFTER</small>주어·동사·수식 관계를 짚고 정확하게 해석한다</div></div>
+            <div class="ba"><div class="b"><small>지금</small>감으로 뜻을 짐작해서 읽는다</div><div class="arrow" aria-hidden="true">→</div><div class="a"><small>8주 뒤</small>주어·동사·수식 관계를 짚고 정확하게 해석한다</div></div>
             <p class="pass"><b>통과 기준</b> · 구문독해 백지테스트 100% / 처음 보는 문장 해석 80% 이상</p></div></div></article>
         <article class="slide" aria-label="3 / 4"><div class="oc">
           <div class="oc-photo"><img src="images/ex-reading.jpg" alt="독해·논리 수업 예시" loading="lazy"></div>
           <div class="oc-body"><span class="no">독해 · 논리</span><h3>문제 유형을 알아보고<br>정답 근거를 찾습니다</h3>
-            <div class="ba"><div class="b"><small>BEFORE</small>왜 그게 정답인지 설명하지 못한다</div><div class="arrow" aria-hidden="true">→</div><div class="a"><small>AFTER</small>유형을 판별하고 근거 문장을 짚어 설명한다</div></div>
+            <div class="ba"><div class="b"><small>지금</small>왜 그게 정답인지 설명하지 못한다</div><div class="arrow" aria-hidden="true">→</div><div class="a"><small>8주 뒤</small>유형을 판별하고 근거 문장을 짚어 설명한다</div></div>
             <p class="pass"><b>통과 기준</b> · 독해·논리 각 16가지 유형 풀이 순서 설명 / 8주 총정리 80% 이상</p></div></div></article>
         <article class="slide" aria-label="4 / 4"><div class="oc">
           <div class="oc-photo"><img src="images/ex-plan.jpg" alt="공부 계획 예시" loading="lazy"></div>
           <div class="oc-body"><span class="no">공부 계획</span><h3>무엇을 어떤 순서로 할지<br>정해 드립니다</h3>
-            <div class="ba"><div class="b"><small>BEFORE</small>무엇부터 해야 할지 몰라 막막하다</div><div class="arrow" aria-hidden="true">→</div><div class="a"><small>AFTER</small>계획대로 공부하고, 복습과 점검이 습관이 된다</div></div>
+            <div class="ba"><div class="b"><small>지금</small>무엇부터 해야 할지 몰라 막막하다</div><div class="arrow" aria-hidden="true">→</div><div class="a"><small>8주 뒤</small>계획대로 공부하고, 복습과 점검이 습관이 된다</div></div>
             <p class="pass"><b>통과 기준</b> · 8주 동안 주간 숙제와 테스트를 계획대로 해냄</p></div></div></article>
       </div>
       <div class="car-ctrl"><div class="car-dots" role="tablist"></div><div class="car-arrows"><button type="button" data-prev aria-label="이전">‹</button><button type="button" data-next aria-label="다음">›</button></div></div>
@@ -539,7 +556,7 @@ footer b{color:#fff}
 <!-- ================= 02 누구에게 ================= -->
 <section class="sec" id="fit">
   <div class="wrap">
-    <span class="eyebrow">02 · 누구에게 맞는 과정인가</span>
+    <span class="eyebrow">누구에게 맞는 과정인가</span>
     <h2>맞는 학생에게는 가장 빠르고,<br>맞지 않는 학생에게는 권하지 않습니다.</h2>
     <p class="lead">수업은 주 2회 90분. 나머지는 숙제로 혼자 공부하는 시간입니다.</p>
     <div class="fit-grid">
@@ -573,8 +590,8 @@ footer b{color:#fff}
 <!-- ================= 03 수업 방식 ================= -->
 <section class="sec" id="lesson">
   <div class="wrap">
-    <span class="eyebrow">03 · 수업 진행 방식</span>
-    <h2>이해했는지, 암기했는지.<br><em>백지테스트로 끝까지 확인합니다.</em></h2>
+    <span class="eyebrow">수업 진행 방식</span>
+    <h2>이해했는지, 암기했는지.<br>백지테스트로 끝까지 확인합니다.</h2>
     <p class="lead">4지선다로는 외웠는지 알 수 없습니다. 그래서 책을 덮고 백지에 직접 씁니다.</p>
 
     <div class="loop" aria-label="백지테스트 순서">
@@ -613,7 +630,7 @@ footer b{color:#fff}
 <!-- ================= 04 진도표 ================= -->
 <section class="sec" id="curriculum">
   <div class="wrap">
-    <span class="eyebrow">04 · 8주 16회 진도표</span>
+    <span class="eyebrow">8주 16회 진도표</span>
     <h2>무엇부터 할지 고민하지 않도록,<br>16회 순서를 정해드립니다.</h2>
     <p class="lead">하루 6시간 이상 개인 공부 기준이며, 이해도에 따라 조정합니다.</p>
     <div class="vocab"><strong>어휘는 강의 없이 개별학습 + 테스트.</strong> 첫 수업에서 발음기호 읽는 법을 익히고, 정해진 범위를 스스로 공부한 뒤 테스트로 확인합니다.</div>
@@ -674,17 +691,17 @@ footer b{color:#fff}
 <!-- ================= 05 로드맵 ================= -->
 <section class="sec" id="roadmap">
   <div class="wrap">
-    <span class="eyebrow">05 · 합격까지의 로드맵</span>
-    <h2>8주 뒤에는 무엇을, 어떻게?<br><em>합격까지 길을 미리 보여드립니다.</em></h2>
+    <span class="eyebrow">합격까지의 로드맵</span>
+    <h2>8주 뒤에는 무엇을, 어떻게?<br>합격까지 길을 미리 보여드립니다.</h2>
     <p class="lead">일정은 목표 시험일에서 거꾸로 계산해 학생마다 확정합니다.</p>
     <div class="road">
-      <div class="step now"><span class="n">STEP 1 · 1:1 수업</span><h3>8주 집중 과정</h3><p>문법·구문독해·독해·논리 유형과 공부법을 몸에 붙입니다.</p><span class="when">8주 · 16회</span></div>
-      <div class="step"><span class="n">STEP 2</span><h3>어휘 확장 + 문제풀이</h3><p>어휘 범위를 넓히고 문제를 양으로 쌓습니다.</p><span class="when">수료 직후</span></div>
-      <div class="step"><span class="n">STEP 3</span><h3>목표 대학 기출 분석</h3><p>대학별 출제 경향에 맞춰 약점을 정리합니다.</p><span class="when">기출 단계</span></div>
-      <div class="step"><span class="n">STEP 4</span><h3>실전 모의고사</h3><p>시간 안에 푸는 연습과 오답 분석을 반복합니다.</p><span class="when">시험 전 몇 달</span></div>
-      <div class="step"><span class="n">STEP 5</span><h3>마무리 점검</h3><p>총정리와 시간 배분으로 실전 컨디션을 맞춥니다.</p><span class="when">시험 직전</span></div>
+      <div class="step now"><span class="n">1단계 · 1:1 수업</span><h3>8주 집중 과정</h3><p>문법·구문독해·독해·논리 유형과 공부법을 몸에 붙입니다.</p><span class="when">8주 · 16회</span></div>
+      <div class="step"><span class="n">2단계</span><h3>어휘 확장 + 문제풀이</h3><p>어휘 범위를 넓히고 문제를 양으로 쌓습니다.</p><span class="when">수료 직후</span></div>
+      <div class="step"><span class="n">3단계</span><h3>목표 대학 기출 분석</h3><p>대학별 출제 경향에 맞춰 약점을 정리합니다.</p><span class="when">기출 단계</span></div>
+      <div class="step"><span class="n">4단계</span><h3>실전 모의고사</h3><p>시간 안에 푸는 연습과 오답 분석을 반복합니다.</p><span class="when">시험 전 몇 달</span></div>
+      <div class="step"><span class="n">5단계</span><h3>마무리 점검</h3><p>총정리와 시간 배분으로 실전 컨디션을 맞춥니다.</p><span class="when">시험 직전</span></div>
     </div>
-    <p class="note">STEP 2부터는 혼자 공부(인강·학원·독학 중 선택)와 월 2회 상담으로 진행 상황을 점검합니다.</p>
+    <p class="note">2단계부터는 혼자 공부(인강·학원·독학 중 선택)와 월 2회 상담으로 진행 상황을 점검합니다.</p>
     <div class="cta-row"><a class="btn cta lg" href="#apply">내 시험일 기준으로 로드맵 받기 →</a></div>
   </div>
 </section>
@@ -696,7 +713,7 @@ footer b{color:#fff}
       <!-- 선생님 단독 사진(images/teacher-profile.jpg)이 있으면 나온다. 없으면 이력만 한 줄로 -->
       <figure class="teacher-photo" style="margin:0"><img src="images/teacher-profile.jpg" alt="재현샘" loading="lazy" onerror="const t=this.closest('.teacher');this.parentElement.remove();t.classList.add('solo')"></figure>
       <div>
-        <span class="eyebrow">06 · 누가 가르치나</span>
+        <span class="eyebrow">누가 가르치나</span>
         <p class="name-big">이재현<small>재현샘</small></p>
         <p class="note" style="margin:4px 0 0;font-size:16px">편입영어 강사 · 한양대학교 졸업</p>
         <ul class="timeline">
@@ -716,15 +733,14 @@ footer b{color:#fff}
       <span class="eyebrow">수강생 후기</span>
       <h2>“문제만 보면<br>쌤 목소리가 들려요.”</h2>
       <p class="lead">재현샘이 편입학원에서 강의하던 시기 수강생들이 남긴 후기 원문에서 골랐습니다. 1:1 과외는 이번이 첫 기수입니다.</p>
-      <div class="reviews">
-        <article class="review featured"><p class="rv-text">“특강들을 듣고 기출문제를 분석하고 백지테스트를 해가면서 스스로 체화시켰습니다. … 정말 어디에서 들을 수 없는 훌륭한 강의라고 생각합니다.”</p><p class="rv-meta">김○주</p></article>
-        <article class="review"><p class="rv-text">“노베이스에서 영어를 처음 시작할 때 재현쌤을 만났습니다. … 문제만 보면 쌤 목소리가 들리는 기적을 경험했습니다.”</p><p class="rv-meta">김○진</p></article>
-        <article class="review"><p class="rv-text">“재현쌤과 함께하는 백지시험은 제 편입공부에 있어서 가장 중요한 기초를 다지는 데 정말 많은 도움이 되었습니다.”</p><p class="rv-meta">학원 수강생</p></article>
-        <article class="review"><p class="rv-text">“수능영어에서 1문제조차 맞추지 못한 저를 편입영어에선 10문제 이상을 맞추게 해주셨습니다.”</p><p class="rv-meta">학원 수강생</p></article>
-        <article class="review"><p class="rv-text">“처음에 기출 30점 나왔을 때도 할 수 있다고 꾸준히 해보자고 항상 응원해주셨던 재현쌤 아니었다면 이런 결과 절대 얻을 수 없었을 거예요.”</p><p class="rv-meta">학원 수강생 · 최초합격</p></article>
-        <article class="review"><p class="rv-text">“편입은 양이 너무 많다는 것 하나만으로 겁이 났었는데, 그럴 때마다 쌤께서 분량을 자세하게 정해주셨고 끝나는 날까지 솔루션을 주셨습니다.”</p><p class="rv-meta">학원 수강생</p></article>
-        <article class="review"><p class="rv-text">“문법을 가장 어려워했는데 재현샘 덕분에 문법이 어려웠던 가천대 합격했습니다.”</p><p class="rv-meta">유○혜 · 가천대 합격</p></article>
-        <article class="review"><p class="rv-text">“문제 풀다가 모르는 게 있어서 질문드리면 낮이든 밤이든 정말 가리지 않고 다 친절하게 답변해주십니다.”</p><p class="rv-meta">조○숙 · 세종대 1차 합격</p></article>
+      <figure class="rv-hero">
+        <blockquote>특강들을 듣고 기출문제를 분석하고 <mark>백지테스트를 해가면서 스스로 체화</mark>시켰습니다. … 정말 어디에서 들을 수 없는 훌륭한 강의라고 생각합니다.</blockquote>
+        <figcaption><span>김○주</span><em>백지테스트</em></figcaption>
+      </figure>
+      <!-- 흐르는 후기 두 줄 — 손을 올리면 멈춘다. 동작 줄이기 설정이면 옆으로 밀어 본다 -->
+      <div class="rv-rows" aria-label="수강생 후기">
+        <div class="rv-row"><div class="rv-track"><figure class="rvc"><blockquote>노베이스에서 영어를 처음 시작할 때 재현쌤을 만났습니다. … <mark>문제만 보면 쌤 목소리가 들리는 기적</mark>을 경험했습니다.</blockquote><figcaption><span>김○진</span><em>노베이스 시작</em></figcaption></figure><figure class="rvc"><blockquote>재현쌤과 함께하는 백지시험은 제 편입공부에 있어서 <mark>가장 중요한 기초</mark>를 다지는 데 정말 많은 도움이 되었습니다.</blockquote><figcaption><span>수강생</span><em>백지시험</em></figcaption></figure><figure class="rvc"><blockquote>수능영어에서 1문제조차 맞추지 못한 저를 편입영어에선 <mark>10문제 이상을 맞추게</mark>해주셨습니다.</blockquote><figcaption><span>수강생</span><em>영어 기초 0</em></figcaption></figure><figure class="rvc"><blockquote>처음에 <mark>기출 30점</mark>나왔을 때도 할 수 있다고 꾸준히 해보자고 항상 응원해주셨던 재현쌤 아니었다면 이런 결과 절대 얻을 수 없었을 거예요.</blockquote><figcaption><span>수강생</span><em>최초합격</em></figcaption></figure></div></div>
+        <div class="rv-row rev"><div class="rv-track"><figure class="rvc"><blockquote>편입은 양이 너무 많다는 것 하나만으로 겁이 났었는데, 그럴 때마다 쌤께서 <mark>분량을 자세하게 정해주셨고</mark> 끝나는 날까지 솔루션을 주셨습니다.</blockquote><figcaption><span>수강생</span><em>공부 계획</em></figcaption></figure><figure class="rvc"><blockquote>문법을 가장 어려워했는데 재현샘 덕분에 문법이 어려웠던 <mark>가천대 합격</mark>했습니다.</blockquote><figcaption><span>유○혜</span><em>가천대 합격</em></figcaption></figure><figure class="rvc"><blockquote>문제 풀다가 모르는 게 있어서 질문드리면 <mark>낮이든 밤이든</mark> 정말 가리지 않고 다 친절하게 답변해주십니다.</blockquote><figcaption><span>조○숙</span><em>세종대 1차 합격</em></figcaption></figure></div></div>
       </div>
     </div>
   </div>
@@ -734,7 +750,7 @@ footer b{color:#fff}
 <section class="sec" id="support">
   <div class="wrap two">
     <div>
-      <span class="eyebrow">07 · 수료 후에도 함께</span>
+      <span class="eyebrow">수료 후에도 함께</span>
       <h2>수업은 8주로 끝나도,<br>상담은 시험 날까지.</h2>
       <ul class="use-list" style="margin-top:28px">
         <li data-n="1"><b>밀린 계획 다시 짜기</b>남은 기간에 맞춰 우선순위를 조정합니다.</li>
@@ -758,8 +774,8 @@ footer b{color:#fff}
 <!-- ================= 08 수업료 · 환불 ================= -->
 <section class="sec" id="price">
   <div class="wrap">
-    <span class="eyebrow">08 · 수업료와 환불</span>
-    <h2>8주 86만 원, 두 번에 나눠 내고<br><em>첫 3회는 위험 없이 들어보세요.</em></h2>
+    <span class="eyebrow">수업료와 환불</span>
+    <h2>8주 86만 원, 두 번에 나눠 내고<br>첫 3회는 위험 없이 들어보세요.</h2>
 
     <div class="price-grid" style="margin-top:36px">
       <article class="price">
@@ -827,8 +843,8 @@ footer b{color:#fff}
 <section class="sec" id="apply">
   <div class="wrap apply-grid">
     <div>
-      <span class="eyebrow">09 · 상담 신청</span>
-      <h2>지금 신청하면<br><em>이번 주에 시작할 수 있어요.</em></h2>
+      <span class="eyebrow">상담 신청</span>
+      <h2>지금 신청하면<br>이번 주에 시작할 수 있어요.</h2>
       <p class="lead" style="margin-bottom:0">1:1이라 한 번에 받는 인원이 정해져 있습니다.</p>
       <div class="seat-card">
         <div class="top-line"><span class="label"><span data-month></span> 모집 · 정원 7명</span><span class="count">남은 자리 <span data-left></span><small>/ 7</small></span></div>
@@ -982,7 +998,7 @@ const CONFIG = {
 
   /* 스크롤 펼침: 구역 제목은 한 번에, 카드 묶음은 차례로(80ms씩, 최대 6개) */
   if('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches){
-    const groups='.promise-grid,.fit-grid,.hours,.loop,.timing,.weeks,.road,.timeline,.use-list,.rules,.faq-grid,.results,.reviews,.contact-list';
+    const groups='.promise-grid,.fit-grid,.hours,.loop,.timing,.weeks,.road,.timeline,.use-list,.rules,.faq-grid,.results,.contact-list';
     const items=[];
     $$('.sec .eyebrow,.sec h2,.sec .lead,.carousel,.record,.cta-row,.vocab,.price,.cmp-wrap,.support-card,.seat-card,.survey,.name-big').forEach(e=>items.push([e,0]));
     $$(groups).forEach(g=>[...g.children].forEach((c,i)=>items.push([c,Math.min(i,6)*0.08])));
@@ -992,6 +1008,13 @@ const CONFIG = {
     const hp=$('.hero-photo img'); let tick=false;
     addEventListener('scroll',()=>{ if(tick) return; tick=true; requestAnimationFrame(()=>{ hp.style.translate='0 '+(Math.min(scrollY,900)*0.18)+'px'; tick=false; }); },{passive:true});
   }
+
+  /* 흐르는 후기 — 같은 줄을 한 벌 더 붙여 끊김 없이 돈다 */
+  $$('.rv-track').forEach(t=>{
+    const base=[...t.children], copy=list=>list.forEach(c=>{ const k=c.cloneNode(true); k.setAttribute('aria-hidden','true'); t.appendChild(k); });
+    while(t.scrollWidth < Math.max(innerWidth,1600)) copy(base);   /* 한 바퀴가 화면보다 넓게 */
+    copy([...t.children]);                                          /* 반으로 접혀 이어지게 */
+  });
 
   /* 있는 사진만 고르기 */
   const loadable=src=>new Promise(res=>{const i=new Image();i.onload=()=>res(true);i.onerror=()=>res(false);i.src=src;});
