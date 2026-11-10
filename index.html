@@ -818,7 +818,7 @@ footer b{color:#fff}
       <p class="note">신청하면 재현샘이 남겨 주신 연락처로 직접 연락드립니다.</p>
       <div class="f2">
         <div><label for="f-name">이름</label><input id="f-name" name="name" type="text" required autocomplete="name" placeholder="홍길동"></div>
-        <div><label for="f-contact">연락처</label><input id="f-contact" name="contact" type="tel" required autocomplete="tel" inputmode="tel" placeholder="010-0000-0000"></div>
+        <div><label for="f-contact">연락처</label><input id="f-contact" name="contact" type="tel" required autocomplete="tel" inputmode="numeric" maxlength="13" placeholder="010-0000-0000"></div>
       </div>
       <div class="hp" aria-hidden="true"><label for="f-website">웹사이트</label><input id="f-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
       <label for="f-status">현재 상황</label>
@@ -831,7 +831,7 @@ footer b{color:#fff}
         <div><label for="f-exam">목표 시험(시기)</label><input id="f-exam" name="exam" type="text" placeholder="예: 내년 1월 일반편입"></div>
       </div>
       <label for="f-time">연락 가능 시간</label>
-      <input id="f-time" name="time" type="text" placeholder="예: 평일 저녁 7시 이후">
+      <select id="f-time" name="time"><option>언제든 괜찮아요</option><option>오전 9시 ~ 오전 10시</option><option>오전 10시 ~ 오전 11시</option><option>오전 11시 ~ 오후 12시</option><option>오후 12시 ~ 오후 1시</option><option>오후 1시 ~ 오후 2시</option><option>오후 2시 ~ 오후 3시</option><option>오후 3시 ~ 오후 4시</option><option>오후 4시 ~ 오후 5시</option><option>오후 5시 ~ 오후 6시</option><option>오후 6시 ~ 오후 7시</option><option>오후 7시 ~ 오후 8시</option><option>오후 8시 ~ 오후 9시</option><option>오후 9시 ~ 오후 10시</option></select>
       <label for="f-msg">궁금한 점</label>
       <textarea id="f-msg" name="msg" placeholder="궁금한 점이 있으면 적어주세요."></textarea>
       <details class="consent">
@@ -958,11 +958,18 @@ const CONFIG = {
   const txt=document.getElementById('resultText');
   const st=document.getElementById('formStatus');
   const btn=document.getElementById('submitBtn');
+  /* 연락처: 숫자만 받아 010-0000-0000 꼴로 맞춘다(최대 11자리) */
+  const PHONE_RE=/^(010\d{8}|01[16789]\d{7,8})$/;
+  const fc=form.elements['contact'];
+  fc.addEventListener('input',()=>{
+    const d=fc.value.replace(/\D/g,'').slice(0,11);
+    fc.value=d.length<4?d:d.length<8?d.slice(0,3)+'-'+d.slice(3):d.length<11?d.slice(0,3)+'-'+d.slice(3,6)+'-'+d.slice(6):d.slice(0,3)+'-'+d.slice(3,7)+'-'+d.slice(7);
+  });
   form.addEventListener('submit',async e=>{
     e.preventDefault();
     const v=n=>(form.elements[n].value||'').trim();
     if(!v('name')){ st.textContent='이름을 입력해 주세요.'; form.elements['name'].focus(); return; }
-    if(v('contact').replace(/\D/g,'').length<9){ st.textContent='연락받을 번호를 입력해 주세요.'; form.elements['contact'].focus(); return; }
+    if(!PHONE_RE.test(v('contact').replace(/\D/g,''))){ st.textContent='휴대폰 번호를 정확히 입력해 주세요. (예: 010-1234-5678)'; form.elements['contact'].focus(); return; }
     if(!form.elements['agree'].checked){ st.textContent='개인정보 수집·이용에 동의해야 신청할 수 있습니다.'; form.elements['agree'].focus(); return; }
     if(CONFIG.formEndpoint){
       btn.disabled=true; st.textContent='보내는 중입니다…';
@@ -970,6 +977,7 @@ const CONFIG = {
         const res=await fetch(CONFIG.formEndpoint,{method:'POST',body:new URLSearchParams(new FormData(form))});
         const out=await res.json();
         if(out.ok){ form.classList.add('sent'); st.textContent=''; form.scrollIntoView({block:'center'}); return; }
+        if(out.error==='contact'){ btn.disabled=false; st.textContent='휴대폰 번호를 정확히 입력해 주세요. (예: 010-1234-5678)'; form.elements['contact'].focus(); return; }
       }catch(_){}
       btn.disabled=false;
     }
