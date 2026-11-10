@@ -270,19 +270,19 @@ h1{font-size:clamp(42px,5.2vw,70px);line-height:1.22;letter-spacing:-.06em;font-
 .review.featured .rv-meta{color:var(--muted)}
 
 /* 후기 — 핵심 한 구절만 형광펜, 나머지는 보통 굵기 */
-.rv-hero{margin:8px 0 34px;padding:34px 38px 30px;background:#fff;border-radius:var(--r-l);box-shadow:0 18px 40px #3b2a2014;position:relative}
+.rv-hero{margin:8px 0 34px;padding:30px 34px 26px;background:#f7ecdf;border:1px solid #ead9c4;border-radius:var(--r-l);position:relative}
 .rv-hero blockquote{margin:0;font-size:clamp(19px,2vw,23px);line-height:1.7;font-weight:500;color:var(--ink2);position:relative}
 .rv-hero figcaption,.rvc figcaption{display:flex;align-items:center;gap:10px;margin-top:18px;font-size:14.5px;font-weight:700;color:var(--ink2)}
-.rv-hero figcaption em,.rvc figcaption em{font-style:normal;font-size:12.5px;font-weight:800;color:var(--brand-d);background:#f6e7d3;border-radius:3px;padding:2px 8px}
+.rv-hero figcaption em,.rvc figcaption em{font-style:normal;font-size:12.5px;font-weight:800;color:var(--brand-d);background:#fffaf4;border:1px solid #ead9c4;border-radius:3px;padding:1px 7px}
 .av{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--ink);color:var(--hi);font-size:13px;font-weight:800}
-mark{background:linear-gradient(transparent 55%,#f4c54299 55%);color:var(--ink);font-weight:800;padding:0 2px}
+mark{background:none;color:var(--brand-d);font-weight:700}
 .rv-rows{display:grid;gap:18px;margin:0 calc(50% - 50vw);padding:6px 0 10px}
 .rv-row{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
 .rv-track{display:flex;gap:18px;width:max-content;padding:4px 0;animation:rvFlow 70s linear infinite}
 .rv-row.rev .rv-track{animation-direction:reverse;animation-duration:60s}
 .rv-row:hover .rv-track,.rv-row:focus-within .rv-track{animation-play-state:paused}
 @keyframes rvFlow{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.rvc{position:relative;margin:0;width:340px;flex:none;background:#fff;border-radius:var(--r-l);padding:24px 24px 20px;box-shadow:0 10px 26px #3b2a2012;display:flex;flex-direction:column;justify-content:space-between}
+.rvc{position:relative;margin:0;width:340px;flex:none;background:#f7ecdf;border:1px solid #ead9c4;border-radius:var(--r-l);padding:22px 22px 18px;display:flex;flex-direction:column;justify-content:space-between}
 .rvc blockquote{margin:0;font-size:15.5px;line-height:1.75;font-weight:500;color:var(--ink2);position:relative}
 @media(max-width:760px){.rvc{width:280px;padding:26px 20px 18px}.rv-hero{padding:28px 22px 24px}}
 @media(prefers-reduced-motion:reduce){.rv-track{animation:none}.rv-row{overflow-x:auto}}
