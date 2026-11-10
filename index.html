@@ -486,6 +486,7 @@ footer b{color:#fff}
       <a href="#proof">후기·실적</a>
       <a href="#price">수업료·환불</a>
       <a href="#faq">Q&amp;A</a>
+      <a data-cafe href="https://cafe.naver.com/transferjaehyunt" target="_blank" rel="noopener">네이버 카페</a>
     </div>
     <a class="btn cta sm" href="#apply">상담 신청</a>
   </nav>
@@ -820,7 +821,7 @@ footer b{color:#fff}
     <div class="head">
       <div><span class="eyebrow">수업료와 환불 규정</span>
       <h2>8주 86만 원, 두 번에 나눠 내고<br>첫 3회는 위험 없이 들어보세요.</h2></div>
-      <p class="lead">수업 전 설문과 상담에서 공부 가능 시간과 필요한 과정을 먼저 정합니다. 수업 자료와 복습 안내는 카페에서 확인합니다.</p>
+      <p class="lead">수업 전 설문과 상담에서 공부 가능 시간과 필요한 과정을 먼저 정합니다. 수업 자료와 복습 안내는 <a data-cafe href="https://cafe.naver.com/transferjaehyunt" target="_blank" rel="noopener" style="text-decoration:underline">카페</a>에서 확인합니다.</p>
     </div>
     <div class="price-grid">
       <article class="price panel">
@@ -985,7 +986,8 @@ footer b{color:#fff}
         대표 교습자: 이재현<br>
         연락처: <a href="tel:01021947778" data-phone-link style="text-decoration:underline"><span data-phone>010-2194-7778</span></a><br>
         <!-- 신고 후 번호를 입력하세요 -->
-        개인과외교습자 신고번호: 제 ____________ 호 (○○교육지원청)
+        개인과외교습자 신고번호: 제 ____________ 호 (○○교육지원청)<br>
+        네이버 카페: <a data-cafe href="https://cafe.naver.com/transferjaehyunt" target="_blank" rel="noopener" style="text-decoration:underline">cafe.naver.com/transferjaehyunt</a>
       </div>
       <div>
         <b>교습비</b><br>
@@ -1012,6 +1014,7 @@ const CONFIG = {
   phone: '01021947778',
   phoneDisplay: '010-2194-7778',
   kakaoUrl: 'https://pf.kakao.com/_CTjXX/chat',
+  cafeUrl: 'https://cafe.naver.com/transferjaehyunt',   // 네이버 카페(홈페이지 역할)
   formEndpoint: 'https://script.google.com/macros/s/AKfycby1E2yPmmmN821k1PHwRsQbOPfqIN7FspthztWrBnzPgCrQC47NiPffAYBjlCAWejVx/exec',
   retention: '상담 신청일로부터 1년(이후 지체 없이 파기)', // 개인정보 보유 기간 — 선생님이 정한 기간으로 바꿔 주세요
   cohort: '1기',                // 모집 이름 — 다음 기수가 열리면 바꾼다
@@ -1051,6 +1054,7 @@ const CONFIG = {
   $$('[data-phone]').forEach(e=>e.textContent=CONFIG.phoneDisplay);
   $$('[data-phone-link]').forEach(e=>e.href='tel:'+CONFIG.phone);
   $$('[data-sms-link]').forEach(e=>e.href='sms:'+CONFIG.phone);
+  $$('[data-cafe]').forEach(a=>{ if(CONFIG.cafeUrl) a.href=CONFIG.cafeUrl; else a.hidden=true; });
 
   /* 8주 계획 모두 펼치기 / 접기 */
   const toggle=$('#toggle-weeks');
