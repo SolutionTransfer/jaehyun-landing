@@ -417,7 +417,14 @@ footer b{color:#fff}
   .wrap{padding:0 18px}
   .sec{padding:64px 0}
   .brand-text{font-size:16px}
-  .hero-copy{padding:40px 18px 32px}
+  /* 모바일 히어로는 따로: 사진은 위에 가리지 않고, 글은 그 아래 검정 바탕에 */
+  .hero-grid{min-height:0}
+  .hero-photo{position:relative;inset:auto;order:-1;aspect-ratio:1/1;max-height:56svh;width:100%}
+  .hero-photo img{object-position:50% 8%}
+  .hero-photo:before{background:linear-gradient(0deg,var(--night) 0%,#1a110c00 26%)}
+  .stamp{display:block;right:14px;top:14px;font-size:14px;padding:9px 12px}
+  .stamp small{font-size:12px}
+  .hero-copy{padding:0 18px 32px;margin-top:-36px;justify-content:flex-start}
   .hero-fade{height:96px}
   .hero-tag{margin-bottom:16px;font-size:14px}
   .hero-sub{margin-bottom:24px}
@@ -500,7 +507,10 @@ footer b{color:#fff}
     </div>
     <!-- 넓은 강의 사진이 오면 images/hero-lecture.jpg 를 바꾸면 된다 -->
     <figure class="hero-photo">
-      <img src="images/hero-lecture.jpg" alt="편입학원에서 강의하는 재현샘" fetchpriority="high">
+      <picture>
+        <source media="(max-width:760px)" srcset="images/teacher-hero.jpg">
+        <img src="images/hero-lecture.jpg" alt="편입학원에서 강의하는 재현샘" fetchpriority="high">
+      </picture>
       <div class="stamp" aria-hidden="true">첫 3회 들어보고<small>마음에 안 들면 전액 환불</small></div>
       <figcaption><b>이재현</b>한양대 졸업 · 편입학원 강의 2001–2022</figcaption>
     </figure>
