@@ -359,7 +359,12 @@ mark{background:none;color:var(--green);font-weight:800}
 
 /* ---------- 시안 구성 조각 ---------- */
 .hook-q{font-size:19px;font-weight:700;color:var(--hi);margin:0 0 10px}
-.blank{margin:0 0 44px}
+.blank{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center;margin:0 0 56px}
+.blank.solo{grid-template-columns:1fr}
+.blank .loop{margin-bottom:24px}
+.blank-photo{margin:0}
+.blank-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--shadow)}
+.blank-photo figcaption{margin-top:10px;font-size:14.5px;color:var(--muted);text-align:center}
 .blank-steps{margin:18px 0 0;padding-left:22px;color:var(--ink2);font-size:16.5px}
 .blank-steps li{margin:6px 0}
 .record{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;margin-top:24px}
@@ -449,6 +454,8 @@ footer b{color:#fff}
   .f2{grid-template-columns:1fr}
   .survey{padding:24px 20px}
   .rules{grid-template-columns:1fr}
+  .blank{grid-template-columns:1fr;gap:28px}
+  .blank-photo{max-width:420px}
   .road-bar{grid-template-columns:1fr}
   .hook-q{font-size:17px}
   .price{padding:26px 22px}
@@ -617,6 +624,7 @@ footer b{color:#fff}
     </div>
 
     <div class="blank">
+      <div>
       <h3 class="sub-h" style="margin-top:0">백지테스트는 이렇게 진행됩니다</h3>
       <div class="loop" aria-label="백지테스트 순서">
         <span>설명 듣기</span><i>→</i><span>이해하기</span><i>→</i><span>암기하기</span><i>→</i><span>백지에 쓰기</span><i>→</i><span>못 쓴 부분 설명·점검</span><i>→</i><span>다시 쓰기</span><i>→</i><span class="ok">모두 쓰면 통과</span>
@@ -627,6 +635,9 @@ footer b{color:#fff}
         <li>쓰지 못한 내용은 재현샘이 질문하면서 이해했는지 점검합니다.</li>
         <li>이해했다고 판단되면 다시 백지테스트를 합니다. 완벽히 다 쓸 때까지 통과하지 않습니다.</li>
       </ol>
+      </div>
+      <!-- 백지테스트 답안 예시 사진(images/blank-test-sample.jpg). 없으면 이 칸은 빠진다 -->
+      <figure class="blank-photo"><img src="images/blank-test-sample.jpg" alt="백지테스트 답안 예시" loading="lazy" onerror="this.closest('.blank').classList.add('solo');this.parentElement.remove()"><figcaption>백지테스트 답안 예시</figcaption></figure>
     </div>
 
     <div class="timing">
@@ -1008,7 +1019,6 @@ const CONFIG = {
   seatsTaken: 0,                // 시트를 못 읽을 때 쓰는 값(평소엔 시트 「확정」 체크 수를 쓴다)
   startText: '신청 후 3일 이내 시작 가능',
   gallery: [
-    {src:'images/blank-test-sample.jpg', caption:'백지테스트 답안 예시'},
     {src:'images/textbook-sample.jpg',   caption:'수업에 쓰는 교재'},
     {src:'images/cafe-screenshot.jpg',   caption:'수업 자료·복습 안내를 올리는 카페'}
   ],
