@@ -52,7 +52,7 @@ img{max-width:100%;display:block}
 :focus-visible{outline:3px solid var(--green);outline-offset:3px}
 [hidden]{display:none!important}
 h1,h2,h3{text-wrap:pretty}
-p,li,dd,blockquote{text-wrap:pretty}
+p,dd,blockquote{text-wrap:pretty}
 .wrap{max-width:1160px;margin:auto;padding:0 24px}
 main{background:linear-gradient(180deg,var(--cream) 0%,#f9f1e6 12%,var(--white) 24%,var(--white) 74%,#f9f1e6 88%,var(--cream) 100%)}
 
@@ -113,8 +113,14 @@ h1 em{font-style:normal;color:var(--hi)}
 .hero-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:62% 6%;transform-origin:60% 30%;animation:heroZoom 1.6s cubic-bezier(.2,.7,.2,1) both}
 @keyframes heroZoom{from{transform:scale(1.08)}to{transform:scale(1)}}
 .hero-photo:before{content:'';position:absolute;inset:-1px 0;z-index:1;background:linear-gradient(0deg,var(--night) 0%,#1a110c00 28%),linear-gradient(90deg,#1a110ce0 0%,#1a110ca8 45%,#1a110c66 100%)}
-.hero-photo figcaption{position:absolute;right:max(24px,calc((100vw - 1160px)/2 + 24px));bottom:130px;z-index:2;font-size:15px;color:#f3e6d6;line-height:1.55;text-align:right}
-.hero-photo figcaption b{display:block;font-size:22px;color:#fff;letter-spacing:-.04em}
+.hero-photo .profile{position:absolute;right:max(24px,calc((100vw - 1160px)/2 + 24px));bottom:120px;z-index:2;width:330px;background:#1a110cc7;backdrop-filter:blur(6px);border:1px solid #ffffff26;border-radius:var(--r);padding:18px 20px 14px;color:#f3e6d6}
+.pf-name{display:flex;align-items:baseline;gap:10px;padding-bottom:10px;border-bottom:1px solid #ffffff26}
+.pf-name b{font-size:22px;color:#fff;letter-spacing:-.04em}
+.pf-name span{font-size:13.5px;color:#d9c7b4;font-weight:600}
+.profile dl{margin:8px 0 0}
+.profile dl div{display:grid;grid-template-columns:82px 1fr;gap:10px;padding:5px 0;font-size:14px;line-height:1.45}
+.profile dt{color:var(--hi);font-weight:700}
+.profile dd{margin:0;color:#f3e6d6}
 .hero-copy>*{animation:heroUp .6s cubic-bezier(.2,.7,.2,1) both}
 .hero-copy>:nth-child(2){animation-delay:.05s}.hero-copy>:nth-child(3){animation-delay:.1s}.hero-copy>:nth-child(4){animation-delay:.15s}.hero-copy>:nth-child(5){animation-delay:.2s}.hero-copy>:nth-child(6){animation-delay:.25s}
 @keyframes heroUp{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
@@ -170,19 +176,20 @@ mark{background:none;color:var(--green);font-weight:800}
 
 /* ---------- 3. 어떻게 가르치나 ---------- */
 .loop{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;margin:0 0 44px;font-size:18px;font-weight:800}
-.loop i{font-style:normal;color:var(--brown)}
+.loop span{white-space:nowrap}
+.loop span+span:before{content:'→';color:var(--brown);margin-right:10px}
 .loop .ok{border-bottom:2px solid var(--green)}
-.timing{display:grid;grid-template-columns:2fr 1fr 1fr;border-top:2px solid var(--ink)}
-.timing>div{padding:24px 28px 8px 0}
-.timing>div+div{padding-left:28px;border-left:1px solid var(--hair)}
+.timing{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;align-items:stretch}
+.timing>div{padding:24px 26px;background:var(--panel);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow)}
 .timing strong{display:block;font-size:56px;line-height:1.05;letter-spacing:-.06em;font-weight:900;color:var(--ink)}
 .timing>div:first-child strong{color:var(--green)}
 .timing strong small{font-size:18px;margin-left:4px;letter-spacing:0}
 .timing h3{font-size:18px;margin:10px 0 4px}
 .timing p{margin:0;font-size:15.5px;color:var(--ink2);line-height:1.6}
 .sub-h{font-size:22px;letter-spacing:-.04em;font-weight:800;margin:64px 0 18px}
-.glossary{display:grid;grid-template-columns:1fr 1fr;gap:0 56px;margin:0;border-top:1px solid var(--hair)}
-.glossary>div{display:grid;grid-template-columns:150px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--hair)}
+.glossary{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;margin:0;padding:6px 30px;background:var(--panel);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow)}
+.glossary>div{display:grid;grid-template-columns:140px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid var(--hair)}
+.glossary>div:nth-last-child(-n+2){border-bottom:0}
 .glossary dt{font-weight:800}
 .glossary dd{margin:0;color:var(--ink2);font-size:16px;line-height:1.65}
 .shot{position:relative;aspect-ratio:16/9;background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
@@ -359,14 +366,17 @@ mark{background:none;color:var(--green);font-weight:800}
 
 /* ---------- 시안 구성 조각 ---------- */
 .hook-q{font-size:19px;font-weight:700;color:var(--hi);margin:0 0 10px}
-.blank{display:grid;grid-template-columns:1.25fr .75fr;gap:48px;align-items:center;margin:0 0 56px}
-.blank.solo{grid-template-columns:1fr}
-.blank .loop{margin-bottom:24px}
-.blank-photo{margin:0}
-.blank-photo img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:var(--r);border:1px solid var(--border);box-shadow:var(--shadow)}
-.blank-photo figcaption{margin-top:10px;font-size:14.5px;color:var(--muted);text-align:center}
-.blank-steps{margin:18px 0 0;padding-left:22px;color:var(--ink2);font-size:16.5px}
-.blank-steps li{margin:6px 0}
+.blank{padding:30px 32px;margin:0 0 48px}
+.blank .loop{margin:0 0 22px;padding-bottom:20px;border-bottom:1px solid var(--hair);font-size:16px;gap:8px 10px}
+.blank-body{display:grid;grid-template-columns:1fr 340px;gap:32px;align-items:stretch}
+.blank-body.solo{grid-template-columns:1fr}
+.blank-photo{margin:0;position:relative;min-height:260px}
+.blank-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 14%;border-radius:var(--r);border:1px solid var(--border)}
+.blank-photo figcaption{position:absolute;left:10px;bottom:10px;background:#1a110cd9;color:#fff;font-size:12.5px;font-weight:800;padding:3px 9px;border-radius:3px}
+.blank-steps{margin:0;padding:0;list-style:none;counter-reset:st}
+.blank-steps li{counter-increment:st;display:grid;grid-template-columns:36px 1fr;gap:6px;padding:14px 0;border-bottom:1px solid var(--hair);font-size:16.5px;color:var(--ink2);line-height:1.6}
+.blank-steps li:last-child{border-bottom:0}
+.blank-steps li:before{content:counter(st);font-size:22px;font-weight:900;color:var(--green);line-height:1.2}
 .record{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px 32px;margin-top:24px}
 .record p{margin:0;flex:1 1 520px;font-size:16px;color:var(--ink2);line-height:1.7}
 .record p b{color:var(--ink);font-size:17px}
@@ -436,9 +446,9 @@ footer b{color:#fff}
   .pm{padding:18px 0;border-left:0;border-top:1px solid var(--hair)}
   .pm:first-child{border-top:0}
   .pm b{font-size:21px;margin-bottom:4px}
-  .timing{grid-template-columns:1fr 1fr}
-  .timing>div:first-child{grid-column:1/-1;padding-right:0}
-  .timing>div:nth-child(2){padding-left:0;border-left:0}
+  .timing{grid-template-columns:1fr}
+  .glossary{padding:4px 20px}
+  .glossary>div:nth-last-child(2){border-bottom:1px solid var(--hair)}
   .glossary{grid-template-columns:1fr}
   .glossary>div{grid-template-columns:1fr;gap:2px}
   .oc-body{padding:26px 22px}
@@ -464,8 +474,9 @@ footer b{color:#fff}
   .cmp td.me{grid-column:1/-1;order:-1;margin:4px 0 8px;font-size:16px;font-weight:800;color:var(--green)}
   .cmp td.me:before{content:'이 과정';color:var(--green)}
   .cmp tbody th{order:-2}
-  .blank{grid-template-columns:1fr;gap:28px}
-  .blank-photo{max-width:420px}
+  .blank{padding:22px 20px}
+  .blank-body{grid-template-columns:1fr;gap:18px}
+  .blank-photo{min-height:0;aspect-ratio:4/3}
   .road-bar{grid-template-columns:1fr}
   .hook-q{font-size:17px}
   .price{padding:26px 22px}
@@ -529,7 +540,16 @@ footer b{color:#fff}
         <source media="(max-width:760px)" srcset="images/teacher-hero.jpg">
         <img src="images/hero-lecture.jpg" alt="편입학원에서 강의하는 재현샘" fetchpriority="high">
       </picture>
-      <figcaption><b>이재현</b>한양대 졸업 · 편입학원 강의 22년(2001–2022)<br>교재 45권 집필 · 편입 상담 7만 회 이상</figcaption>
+      <figcaption class="profile">
+        <div class="pf-name"><b>이재현</b><span>편입영어 강사 · 재현샘</span></div>
+        <dl>
+          <div><dt>학력</dt><dd>한양대학교 졸업</dd></div>
+          <div><dt>2001–2022</dt><dd>편입학원 강의 22년</dd></div>
+          <div><dt>집필</dt><dd>편입 교재 45권</dd></div>
+          <div><dt>상담</dt><dd>편입 학습 상담 7만 회 이상</dd></div>
+          <div><dt>2023–현재</dt><dd>교재 집필 · 학습 설계 · 학습 상담</dd></div>
+        </dl>
+      </figcaption>
     </figure>
   </div>
 </section>
@@ -634,21 +654,21 @@ footer b{color:#fff}
       <p class="lead">4지선다형 문제로는 외웠는지 알 수 없습니다. 그래서 책을 덮고 정해진 시간 안에 백지에 직접 씁니다.</p>
     </div>
 
-    <div class="blank">
-      <div>
-      <h3 class="sub-h" style="margin-top:0">백지테스트는 이렇게 진행됩니다</h3>
+    <div class="blank panel">
+      <h3 class="sub-h" style="margin:0 0 14px">백지테스트는 이렇게 진행됩니다</h3>
       <div class="loop" aria-label="백지테스트 순서">
-        <span>설명 듣기</span><i>→</i><span>이해하기</span><i>→</i><span>암기하기</span><i>→</i><span>백지에 쓰기</span><i>→</i><span>못 쓴 부분 설명·점검</span><i>→</i><span>다시 쓰기</span><i>→</i><span class="ok">모두 쓰면 통과</span>
+        <span>설명 듣기</span><span>이해하기</span><span>암기하기</span><span>백지에 쓰기</span><span>못 쓴 부분 설명·점검</span><span>다시 쓰기</span><span class="ok">모두 쓰면 통과</span>
       </div>
-      <ol class="blank-steps">
+      <div class="blank-body">
+        <ol class="blank-steps">
         <li>배운 내용을 이해하고 스스로 암기합니다.</li>
         <li>책을 덮고, 주어진 시간 안에 백지에 다 씁니다.</li>
         <li>쓰지 못한 내용은 재현샘이 질문하면서 이해했는지 점검합니다.</li>
         <li>이해했다고 판단되면 다시 백지테스트를 합니다. 완벽히 다 쓸 때까지 통과하지 않습니다.</li>
       </ol>
+        <!-- 백지테스트 답안 예시 사진(images/blank-test-sample.jpg). 없으면 이 칸은 빠진다 -->
+        <figure class="blank-photo"><img src="images/blank-test-sample.jpg" alt="백지테스트 답안 예시" loading="lazy" onerror="this.closest('.blank-body').classList.add('solo');this.parentElement.remove()"><figcaption>백지테스트 답안 예시</figcaption></figure>
       </div>
-      <!-- 백지테스트 답안 예시 사진(images/blank-test-sample.jpg). 없으면 이 칸은 빠진다 -->
-      <figure class="blank-photo"><img src="images/blank-test-sample.jpg" alt="백지테스트 답안 예시" loading="lazy" onerror="this.closest('.blank').classList.add('solo');this.parentElement.remove()"><figcaption>백지테스트 답안 예시</figcaption></figure>
     </div>
 
     <div class="timing">
