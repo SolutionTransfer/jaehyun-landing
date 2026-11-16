@@ -359,6 +359,11 @@ mark{background:none;color:var(--green);font-weight:800}
 .glossary>div:nth-last-child(-n+2){border-bottom:0}
 .glossary dt{font-weight:800}
 .glossary dd{margin:0;color:var(--ink2);font-size:16px;line-height:1.65}
+.gallery{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:14px}
+.gallery figure{margin:0}
+.gallery .g-img{aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;border:1px solid var(--border);background:#fff;box-shadow:var(--shadow)}
+.gallery img{width:100%;height:100%;object-fit:cover;object-position:top}
+.gallery figcaption{margin-top:10px;font-size:15px;font-weight:600;color:var(--ink2);text-align:center}
 .shot{position:relative;aspect-ratio:16/9;background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
 .shot img{width:100%;height:100%;object-fit:contain}
 .shot figcaption{position:absolute;left:16px;bottom:16px;background:#1f1510d9;color:#fff;font-size:15px;font-weight:700;padding:6px 12px;border-radius:4px}
@@ -650,6 +655,7 @@ footer b{color:#fff}
   .blank .loop{display:none}   /* 같은 흐름을 아래 1~4 번호가 말한다 — 휴대폰에선 화살표 줄을 뺀다 */
   .blank .sub-h{margin-bottom:6px!important}
   .blank-body{grid-template-columns:1fr;gap:18px}
+  .gallery{grid-template-columns:1fr}
   .blank-photo{min-height:0;aspect-ratio:4/3}
   .road-bar{grid-template-columns:1fr}
   .hook-q{font-size:17px}
@@ -850,13 +856,10 @@ footer b{color:#fff}
       <div><strong>15<small>분</small></strong><h3>질의응답 · 과제</h3><p>막힌 부분을 질문하고, 다음 시간까지 할 공부를 정합니다.</p></div>
     </div>
 
-    <!-- 수업 자료 사진: CONFIG.gallery 에 적힌 사진 중 있는 것만 한 장씩. 하나도 없으면 숨는다 -->
+    <!-- 수업 자료 사진: CONFIG.gallery 순서대로, 사진이 있는 것만 칸으로 나란히(최대 3칸). 하나도 없으면 숨는다 -->
     <div id="gallery-block" hidden>
       <h3 class="sub-h">수업 자료 미리보기</h3>
-      <div class="carousel" data-carousel data-interval="4000" aria-roledescription="carousel" aria-label="수업 자료 미리보기">
-        <div class="rail" tabindex="0" id="gallery-rail"></div>
-        <div class="car-ctrl"><div class="car-dots" role="tablist"></div><div class="car-arrows"><button type="button" data-prev aria-label="이전">‹</button><button type="button" data-next aria-label="다음">›</button></div></div>
-      </div>
+      <div class="gallery" id="gallery"></div>
     </div>
 
     <h3 class="sub-h">용어 풀이</h3>
@@ -1352,8 +1355,9 @@ const CONFIG = {
 
   Promise.all(CONFIG.gallery.map(g=>loadable(g.src).then(ok=>ok&&g))).then(list=>{
     list=list.filter(Boolean); if(!list.length) return;
-    $('#gallery-rail').innerHTML=list.map((g,i)=>'<figure class="slide" style="margin:0" aria-label="'+(i+1)+' / '+list.length+'"><div class="shot"><img src="'+g.src+'" alt="'+g.caption+'" loading="lazy"><figcaption>'+g.caption+'</figcaption></div></figure>').join('');
-    $('#gallery-block').hidden=false; carousel($('#gallery-block [data-carousel]'));
+    const gl=$('#gallery'); gl.style.setProperty('--n',Math.min(3,list.length));
+    gl.innerHTML=list.map(g=>'<figure><div class="g-img"><img src="'+g.src+'" alt="'+g.caption+'" loading="lazy"></div><figcaption>'+g.caption+'</figcaption></figure>').join('');
+    $('#gallery-block').hidden=false;
   });
 
   Promise.all(CONFIG.books.map(s=>loadable(s).then(ok=>ok&&s))).then(list=>{
