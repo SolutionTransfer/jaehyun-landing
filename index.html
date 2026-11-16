@@ -834,15 +834,13 @@ footer b{color:#fff}
       <div class="loop" aria-label="백지테스트 순서">
         <span>설명 듣기</span><span>이해하기</span><span>암기하기</span><span>백지에 쓰기</span><span>못 쓴 부분 설명·점검</span><span>다시 쓰기</span><span class="ok">모두 쓰면 통과</span>
       </div>
-      <div class="blank-body">
+      <div class="blank-body solo">
         <ol class="blank-steps">
         <li>배운 내용을 이해하고 스스로 암기합니다.</li>
         <li>책을 덮고, 주어진 시간 안에 백지에 다 씁니다.</li>
         <li>쓰지 못한 내용은 재현샘이 질문하면서 이해했는지 점검합니다.</li>
         <li>이해했다고 판단되면 다시 백지테스트를 합니다. 완벽히 다 쓸 때까지 통과하지 않습니다.</li>
       </ol>
-        <!-- 백지테스트 답안 예시 사진(images/blank-test-sample.jpg). 없으면 이 칸은 빠진다 -->
-        <figure class="blank-photo"><img src="images/blank-test-sample.jpg" alt="백지테스트 답안 예시" loading="lazy" onerror="this.closest('.blank-body').classList.add('solo');this.parentElement.remove()"><figcaption>백지테스트 답안 예시</figcaption></figure>
       </div>
     </div>
 
@@ -1227,6 +1225,7 @@ const CONFIG = {
   seatsLeft: 2,                 // 남은 자리 — 직접 정해 적는 숫자(0 이면 「마감」)
   startText: '신청 후 3일 이내 시작 가능',
   gallery: [
+    {src:'images/blank-test-sample.jpg', caption:'백지테스트 답안 예시'},
     {src:'images/textbook-sample.jpg',   caption:'수업에 쓰는 교재'},
     {src:'images/cafe-screenshot.jpg',   caption:'수업 자료·복습 안내를 올리는 카페'}
   ],
