@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /_원본/
+Disallow: /gas/
+
+Sitemap: https://jaehyuntransfer.co.kr/sitemap.xml
