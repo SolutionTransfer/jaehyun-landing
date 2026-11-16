@@ -362,7 +362,12 @@ mark{background:none;color:var(--green);font-weight:800}
 .gallery{display:grid;grid-template-columns:repeat(var(--n,3),1fr);gap:14px}
 .gallery figure{margin:0}
 .gallery .g-img{aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;border:1px solid var(--border);background:#fff;box-shadow:var(--shadow)}
-.gallery img{width:100%;height:100%;object-fit:cover;object-position:top}
+.gallery .g-img{position:relative}
+.gallery img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .6s ease}
+.gallery img.on{opacity:1}
+.g-dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:6px}
+.g-dots i{width:7px;height:7px;border-radius:50%;background:#ffffff99;box-shadow:0 0 0 1px #0003}
+.g-dots i.on{background:#fff}
 .gallery figcaption{margin-top:10px;font-size:15px;font-weight:600;color:var(--ink2);text-align:center}
 .shot{position:relative;aspect-ratio:16/9;background:#fff;border-radius:var(--r);overflow:hidden;border:1px solid var(--border)}
 .shot img{width:100%;height:100%;object-fit:contain}
@@ -1228,7 +1233,7 @@ const CONFIG = {
   seatsLeft: 2,                 // 남은 자리 — 직접 정해 적는 숫자(0 이면 「마감」)
   startText: '신청 후 3일 이내 시작 가능',
   gallery: [
-    {src:'images/blank-test-sample.jpg', caption:'백지테스트 답안 예시'},
+    {srcs:['images/blank-test-1.jpg','images/blank-test-2.jpg','images/blank-test-3.jpg','images/blank-test-4.jpg','images/blank-test-5.jpg','images/blank-test-6.jpg'], caption:'백지테스트 답안 예시'},  // 여러 장이면 한 칸 안에서 넘어간다
     {src:'images/textbook-sample.jpg',   caption:'수업에 쓰는 교재'},
     {src:'images/cafe-screenshot.jpg',   caption:'수업 자료·복습 안내를 올리는 카페'}
   ],
@@ -1353,11 +1358,15 @@ const CONFIG = {
   Promise.all($$('.oc-photo img').map(img=>loadable(img.getAttribute('src')).then(ok=>{ if(!ok){ const oc=img.closest('.oc'); img.parentElement.remove(); oc.classList.add('no-photo'); } })))
     .then(()=>carousel($('#outcome [data-carousel]')));
 
-  Promise.all(CONFIG.gallery.map(g=>loadable(g.src).then(ok=>ok&&g))).then(list=>{
+  Promise.all(CONFIG.gallery.map(g=>Promise.all((g.srcs||[g.src]).map(u=>loadable(u).then(ok=>ok&&u))).then(us=>{us=us.filter(Boolean);return us.length?{caption:g.caption,srcs:us}:null;}))).then(list=>{
     list=list.filter(Boolean); if(!list.length) return;
     const gl=$('#gallery'); gl.style.setProperty('--n',Math.min(3,list.length));
-    gl.innerHTML=list.map(g=>'<figure><div class="g-img"><img src="'+g.src+'" alt="'+g.caption+'" loading="lazy"></div><figcaption>'+g.caption+'</figcaption></figure>').join('');
+    gl.innerHTML=list.map(g=>'<figure><div class="g-img">'+g.srcs.map((u,i)=>'<img src="'+u+'" alt="'+g.caption+(g.srcs.length>1?' '+(i+1):'')+'" loading="lazy"'+(i?'':' class="on"')+'>').join('')+(g.srcs.length>1?'<span class="g-dots" aria-hidden="true">'+g.srcs.map((u,i)=>'<i'+(i?'':' class="on"')+'></i>').join('')+'</span>':'')+'</div><figcaption>'+g.caption+'</figcaption></figure>').join('');
     $('#gallery-block').hidden=false;
+    if(!matchMedia('(prefers-reduced-motion: reduce)').matches) gl.querySelectorAll('.g-img').forEach(box=>{
+      const ims=box.querySelectorAll('img'), ds=box.querySelectorAll('.g-dots i'); if(ims.length<2) return;
+      let k=0; setInterval(()=>{ ims[k].classList.remove('on'); ds[k].classList.remove('on'); k=(k+1)%ims.length; ims[k].classList.add('on'); ds[k].classList.add('on'); },3000);
+    });
   });
 
   Promise.all(CONFIG.books.map(s=>loadable(s).then(ok=>ok&&s))).then(list=>{
